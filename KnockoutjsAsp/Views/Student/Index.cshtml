@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div>This is our view</div>
+
+
+<div class="card">
+    <div class="card-header">New Student</div>
+    <div class="card-body" data-bind="with:newStudent">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input name="fullName" data-bind="value:fullName" />
+        </div>
+
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-primary" data-bind="click:addStudent">Add</button>
+        <button class="btn btn-primary" data-bind="click:resetForm">Reset</button>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>SN</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>DOB</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach:students">
+        <tr>
+            <td data-bind="text:$index()+1"></td>
+            <td data-bind="text:fullName"></td>
+            <td data-bind="text:address"></td>
+            <td data-bind="text:dob"></td>
+            <td>
+                <div class="btn-group btn-group-sm">
+                    <button data-bind="click:$parent.selectStudent" class="btn btn-sm btn-dark"><i class="fa fa-edit"></i> Edit</button>
+                    <button data-bind="click:$parent.deleteStudent" class="btn btn-sm btn-danger"><i class="fa fa-edit"></i> Delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+
+@section Scripts{
+    <script src="~/js/knockoutjs3.5.1.js"></script>
+    <script src="~/js/app/student/student.model.js"></script>
+    <script src="~/js/app/student/student.controller.js"></script>
+
+    <script>
+        ko.applyBindings(new StudentController());
+    </script>
+}
